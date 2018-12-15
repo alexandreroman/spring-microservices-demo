@@ -1,0 +1,42 @@
+server:
+  port: ${PORT:8080}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+spring:
+  application:
+    name: spring-microservices-gateway
+  cloud:
+    gateway:
+      # See route spec here:
+      # https://github.com/spring-cloud/spring-cloud-gateway/blob/master/docs/src/main/asciidoc/spring-cloud-gateway.adoc
+
+      routes:
+        - id: echo
+          uri: ${microservices.echo}
+          predicates:
+            - Path=/api/echo/{segment}
+
+        - id: time
+          uri: ${microservices.time}
+          predicates:
+            - Path=/api/time/{segment}
+
+        - id: greeting
+          uri: ${microservices.greeting}
+          predicates:
+            - Path=/api/greeting/{segment}
+          filters:
+            - name: Hystrix
+              args:
+                name: greetingFallback
+                fallbackUri: forward:/api/fallback/greeting
+
+microservices:
+  echo: "http://localhost:8083/api/echo"
+  time: "http://localhost:8082/api/time"
+  greeting: "http://localhost:8081/api/greeting"

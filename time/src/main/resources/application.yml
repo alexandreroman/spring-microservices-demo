@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: spring-microservices-time
+
+server:
+  port: ${PORT:8082}
+  servlet:
+    context-path: /api/time
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

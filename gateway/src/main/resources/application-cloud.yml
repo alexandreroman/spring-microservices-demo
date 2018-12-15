@@ -1,0 +1,4 @@
+microservices:
+  echo: "http://echo.apps.internal:8080/api/echo"
+  time: "http://time.apps.internal:8080/api/time"
+  greeting: "http://greeting.apps.internal:8080/api/greeting"

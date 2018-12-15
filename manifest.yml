@@ -1,0 +1,24 @@
+---
+applications:
+  - name: gateway
+    memory: 1G
+    random-route: true
+    path: gateway/target/spring-microservices-gateway.jar
+
+  - name: echo
+    memory: 1G
+    routes:
+      - route: echo.apps.internal
+    path: echo/target/spring-microservices-echo.jar
+
+  - name: time
+    memory: 1G
+    routes:
+      - route: time.apps.internal
+    path: time/target/spring-microservices-time.jar
+
+  - name: greeting
+    memory: 1G
+    routes:
+      - route: greeting.apps.internal
+    path: greeting/target/spring-microservices-greeting.jar

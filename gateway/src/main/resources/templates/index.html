@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv=" Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Spring Microservices Demo</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:700i" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://unpkg.com/normalize.css@8.0.0/normalize.css"/>
+    <link rel="stylesheet" href="/styles.css"/>
+</head>
+<body>
+<div id="container">
+    <h1>Spring Microservices Demo</h1>
+
+    <h2>/api/time</h2>
+    <p>Get current time:</p>
+    <p><code>$ curl "<span th:text="${timeUri}"/>/current"<br/><span class="output">2018-12-15T02:06:59.439+01:00</span></code>
+    </p>
+
+    <h2>/api/greeting</h2>
+    <p>Get classic greeting text:</p>
+    <p><code>$ curl "<span th:text="${greetingUri}"/>/hello?name=Spring"<br/><span class="output">Hello Spring!%</span></code>
+    </p>
+
+    <h2>/api/echo</h2>
+    <p>Get JSON request body in response:</p>
+    <p><code>$ curl -X POST "<span th:text="${echoUri}"/>/mirror" \<br/> -H "Content-Type: application/json" \<br/>
+        -d '{ "name": "Spring" }'<br/><span class="output">{"echo":{"name":"Spring"}}%</span></code>
+    </p>
+
+    <h2>Setup</h2>
+    <p>Prior to accessing these microservices, you need to open a network route
+        between the gateway and each microservice instance:</p>
+    <p><code>$ cf add-network-policy gateway --destination-app time</code></p>
+    <p><code>$ cf add-network-policy gateway --destination-app echo</code></p>
+    <p><code>$ cf add-network-policy gateway --destination-app greeting</code></p>
+
+    <div id="footer">
+        <p><a href="https://pivotal.io"><img src="/images/pivotal-spring-logos.png"/></a></p>
+    </div>
+</div>
+
+<a href="https://github.com/alexandreroman/spring-microservices-demo"><img
+        style="position: absolute; top: 0; right: 0; border: 0;"
+        src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"
+        alt="Fork me on GitHub"></a>
+</body>
+</html>
