@@ -55,5 +55,6 @@
         <module>echo</module>
         <module>time</module>
         <module>greeting</module>
+        <module>whoami</module>
     </modules>
 </project>

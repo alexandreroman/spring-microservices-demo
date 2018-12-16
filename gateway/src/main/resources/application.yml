@@ -26,6 +26,11 @@ spring:
           predicates:
             - Path=/api/time/{segment}
 
+        - id: whoami
+          uri: ${microservices.whoami}
+          predicates:
+            - Path=/api/whoami/{segment}
+
         - id: greeting
           uri: ${microservices.greeting}
           predicates:
@@ -40,3 +45,4 @@ microservices:
   echo: "http://localhost:8083/api/echo"
   time: "http://localhost:8082/api/time"
   greeting: "http://localhost:8081/api/greeting"
+  whoami: "http://localhost:8084/api/whoami"

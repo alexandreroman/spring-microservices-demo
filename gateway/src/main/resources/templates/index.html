@@ -29,12 +29,23 @@
         -d '{ "name": "Spring" }'<br/><span class="output">{"echo":{"name":"Spring"}}%</span></code>
     </p>
 
+    <h2>/api/whoami</h2>
+    <p>Get information from a running application instance:</p>
+    <p><code>$ curl "<span th:text="${whoamiUri}"/>/id"<br/><span class="output">whoami/0%</span></code></p>
+    <p><code>$ curl "<span th:text="${whoamiUri}"/>/ip"<br/><span class="output">10.255.175.240%</span></code></p>
+    <p><code>$ curl "<span th:text="${whoamiUri}"/>/hostname"<br/>
+        <span class="output">ec6f3b77-8947-47e7-4d6e-27c6%</span></code></p>
+    <p><code>$ curl "<span th:text="${whoamiUri}"/>/info"<br/>
+        <span class="output">{"id":"whoami/0","hostname":"a0f22de1-7a06-4d26-7f36-d259","ip":"10.255.175.248"}%</span></code>
+    </p>
+
     <h2>Setup</h2>
     <p>Prior to accessing these microservices, you need to open a network route
-        between the gateway and each microservice instance:</p>
+        between the gateway and each microservice:</p>
     <p><code>$ cf add-network-policy gateway --destination-app time</code></p>
     <p><code>$ cf add-network-policy gateway --destination-app echo</code></p>
     <p><code>$ cf add-network-policy gateway --destination-app greeting</code></p>
+    <p><code>$ cf add-network-policy gateway --destination-app whoami</code></p>
 
     <div id="footer">
         <p><a href="https://pivotal.io"><img src="/images/pivotal-spring-logos.png"/></a></p>

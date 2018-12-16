@@ -29,6 +29,7 @@ public class IndexController {
         view.put("echoUri", uriBuilder.cloneBuilder().path("/api/echo").build());
         view.put("timeUri", uriBuilder.cloneBuilder().path("/api/time").build());
         view.put("greetingUri", uriBuilder.cloneBuilder().path("/api/greeting").build());
+        view.put("whoamiUri", uriBuilder.cloneBuilder().path("/api/whoami").build());
         return "index";
     }
 }

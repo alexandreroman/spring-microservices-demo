@@ -22,3 +22,9 @@ applications:
     routes:
       - route: greeting.apps.internal
     path: greeting/target/spring-microservices-greeting.jar
+
+  - name: whoami
+    memory: 1G
+    routes:
+      - route: whoami.apps.internal
+    path: whoami/target/spring-microservices-whoami.jar

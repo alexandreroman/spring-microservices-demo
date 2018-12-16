@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: spring-microservices-whoami
+
+server:
+  port: ${PORT:8084}
+  servlet:
+    context-path: /api/whoami
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
