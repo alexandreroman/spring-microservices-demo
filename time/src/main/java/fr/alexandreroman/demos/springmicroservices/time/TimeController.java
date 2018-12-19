@@ -24,7 +24,7 @@ import java.time.format.DateTimeFormatter;
 
 @RestController
 public class TimeController {
-    @GetMapping("current")
+    @GetMapping("/api/time/current")
     public String current() {
         final DateTimeFormatter formatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
         return formatter.format(ZonedDateTime.now());

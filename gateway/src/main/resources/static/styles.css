@@ -5,6 +5,10 @@ body {
     color: white;
 }
 
+a, a:visited {
+    color: lightblue;
+}
+
 h1 {
     font-weight: bold;
     color: #7EB050;

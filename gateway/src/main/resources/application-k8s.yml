@@ -1,0 +1,5 @@
+microservices:
+  echo: "http://echo.spring-microservices.svc.cluster.local:8080/api/echo"
+  time: "http://time.spring-microservices.svc.cluster.local:8080/api/time"
+  greeting: "http://greeting.spring-microservices.svc.cluster.local:8080/api/greeting"
+  whoami: "http://whoami.spring-microservices.svc.cluster.local:8080/api/whoami"

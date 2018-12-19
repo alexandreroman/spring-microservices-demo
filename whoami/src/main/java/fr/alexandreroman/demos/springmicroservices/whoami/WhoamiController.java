@@ -39,33 +39,29 @@ public class WhoamiController {
     private @Value("${spring.application.name}")
     String springApplicationName;
 
-    @GetMapping("hostname")
+    @GetMapping("/api/whoami/hostname")
     public String hostname() throws UnknownHostException {
         return InetAddress.getLocalHost().getCanonicalHostName();
     }
 
-    @GetMapping("ip")
+    @GetMapping("/api/whoami/ip")
     public String ip() throws UnknownHostException {
         return InetAddress.getLocalHost().getHostAddress();
     }
 
-    @GetMapping("id")
+    @GetMapping("/api/whoami/id")
     public String id(ObjectMapper objectMapper) throws IOException {
         final String appIndexStr = System.getenv(VAR_CF_INSTANCE_INDEX);
-        final int appIndex;
-        if (appIndexStr == null) {
-            log.warn("Environment variable not set: {}", VAR_CF_INSTANCE_INDEX);
-            appIndex = 0;
-        } else {
-            appIndex = Integer.parseInt(appIndexStr);
-        }
-        String appName = null;
         final String appJson = System.getenv(VAR_VCAP_APPLICATION);
+        if (appIndexStr == null || appJson == null) {
+            return hostname();
+        }
+
+        final int appIndex = Integer.parseInt(appIndexStr);
+        String appName = null;
         if (appJson != null) {
             final VcapApplication vcap = objectMapper.readValue(appJson, VcapApplication.class);
             appName = vcap.applicationName;
-        } else {
-            log.warn("Environment variable not set: {}", VAR_VCAP_APPLICATION);
         }
         if (appName == null) {
             appName = springApplicationName;
@@ -73,7 +69,7 @@ public class WhoamiController {
         return appName + "/" + appIndex;
     }
 
-    @GetMapping("info")
+    @GetMapping("/api/whoami/info")
     public Info info(ObjectMapper objectMapper) throws IOException {
         final Info info = new Info();
         info.id = id(objectMapper);

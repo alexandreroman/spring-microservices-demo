@@ -2,11 +2,8 @@ spring:
   application:
     name: spring-microservices-echo
 
-
 server:
   port: ${PORT:8083}
-  servlet:
-    context-path: /api/echo
 
 management:
   endpoints:

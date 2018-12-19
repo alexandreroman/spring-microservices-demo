@@ -24,7 +24,7 @@ import javax.validation.constraints.NotEmpty;
 
 @RestController
 public class GreetingController {
-    @GetMapping("hello")
+    @GetMapping("/api/greeting/hello")
     public String hello(@RequestParam("name") @NotEmpty String name) {
         return "Hello " + name + "!";
     }

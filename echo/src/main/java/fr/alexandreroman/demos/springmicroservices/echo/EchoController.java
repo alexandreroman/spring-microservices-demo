@@ -26,9 +26,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class EchoController {
-    @PostMapping("mirror")
+    @PostMapping("/api/echo/mirror")
     public ResponseEntity<JsonNode> mirror(@RequestBody(required = false) JsonNode body,
-                                         ObjectMapper objectMapper) {
+                                           ObjectMapper objectMapper) {
         if (body == null) {
             return ResponseEntity.noContent().build();
         }
