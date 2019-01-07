@@ -36,6 +36,14 @@ spring:
           uri: ${microservices.time}
           predicates:
             - Path=/api/time/{segment}
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter:
+                  # How many requests per second do you want a user to be allowed to do?
+                  replenish-rate: 1
+                  # Maximum number of requests a user is allowed to do in a single second.
+                  burst-capacity: 1
 
         - id: whoami
           uri: ${microservices.whoami}
@@ -51,7 +59,6 @@ spring:
               args:
                 name: greetingFallback
                 fallbackUri: forward:/api/fallback/greeting
-
 ```
 
 ## How to use it?
