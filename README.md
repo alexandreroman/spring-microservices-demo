@@ -61,6 +61,12 @@ Compile this project using a JDK 8:
 $ ./mvnw clean package
 ```
 
+In order to use request rate limiter, you also need to start
+a local Redis instance:
+```shell
+$ docker run --rm --name redis -p "6379:6379/tcp" redis:5
+```
+
 You can now start each microservice on your host:
 ```shell
 $ java -jar gateway/target/spring-microservices-gateway.jar
@@ -78,10 +84,17 @@ Hit http://localhost:8080 to discover how to reach API endpoints.
 
 ### Deploy to Cloud Foundry
 
+Make sure to create a Redis instance on your space prior
+to pushing apps:
+```shell
+$ cf create-service p-redis shared-vm redis
+```
+
 You can easily deploy these microservices to Cloud Foundry:
 ```shell
 $ cf push
 ```
+
 This project relies on
 [container-to-container networking](https://docs.cloudfoundry.org/concepts/understand-cf-networking.html):
 you do not need to install

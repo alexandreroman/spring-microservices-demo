@@ -41,6 +41,11 @@ spec:
             initialDelaySeconds: 90
             timeoutSeconds: 10
             failureThreshold: 4
+        - name: redis
+          image: redis:5
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 6379
 ---
 apiVersion: apps/v1
 kind: Deployment

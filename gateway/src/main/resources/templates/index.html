@@ -17,6 +17,10 @@
     <p>Get current time:</p>
     <p><code>$ curl "<span th:text="${timeUri}"/>/current"<br/><span class="output">2018-12-15T02:06:59.439+01:00</span></code>
     </p>
+    <p>This service is protected by a
+        <a href="https://cloud.spring.io/spring-cloud-static/spring-cloud-gateway/2.0.2.RELEASE/single/spring-cloud-gateway.html#_redis_ratelimiter">rate
+            limiter</a>.
+        If too many requests are received, HTTP error <code>429 Too Many Requests</code> is sent.</p>
 
     <h2>/api/echo</h2>
     <p>Get JSON request body in response:</p>
