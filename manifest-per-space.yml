@@ -1,0 +1,32 @@
+---
+applications:
+  - name: gateway
+    memory: 1G
+    random-route: true
+    path: gateway/target/spring-microservices-gateway.jar
+    services:
+      - redis
+
+  - name: echo
+    memory: 1G
+    routes:
+      - route: echo-((space-id)).apps.internal
+    path: echo/target/spring-microservices-echo.jar
+
+  - name: time
+    memory: 1G
+    routes:
+      - route: time-((space-id)).apps.internal
+    path: time/target/spring-microservices-time.jar
+
+  - name: greeting
+    memory: 1G
+    routes:
+      - route: greeting-((space-id)).apps.internal
+    path: greeting/target/spring-microservices-greeting.jar
+
+  - name: whoami
+    memory: 1G
+    routes:
+      - route: whoami-((space-id)).apps.internal
+    path: whoami/target/spring-microservices-whoami.jar
